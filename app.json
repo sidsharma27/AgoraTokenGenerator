@@ -12,10 +12,6 @@
     "APP_CERTIFICATE": {
       "description": "Agora.io App ID: Login to the Agora.io Developer Dashboard (http://dashboard.agora.io), and navigate to the \"Projects\" tab to get this value",
       "required": true
-    },
-    "CHANNEL_NAME": {
-      "description": "Agora.io App ID: Login to the Agora.io Developer Dashboard (http://dashboard.agora.io), and navigate to the \"Projects\" tab to get this value",
-      "required": true
     }
   }
 }
