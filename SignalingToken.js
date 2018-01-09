@@ -2,7 +2,7 @@ const md5 = require("md5");
 
 var SignalingToken = {}
 
-SignalingToken.get = function(appid, appcertificate, account, validTimeInSeconds){
+SignalingToken.generateSignalingKey = function(appid, appcertificate, account, validTimeInSeconds){
     var expiredTime = parseInt(new Date().getTime() / 1000)+ validTimeInSeconds;
     var token_items = [];
 

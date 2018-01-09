@@ -2,8 +2,10 @@
 //var https = require('https');
 var http = require('http');
 var express = require('express');
-var AgoraSignGenerator = require('./lib/AgoraSignGenerator');
-var AgoraSignalingKeyGenerator = require('./lib/SignalingToken');
+var AgoraSignGenerator = require('./AgoraSignGenerator');
+var favicon = require('serve-favicon');
+
+var AgoraSignalingKeyGenerator = require('./SignalingToken');
 const md5 = require("md5");
 var PORT = 8080;
 
@@ -25,7 +27,7 @@ var generateDynamicKey = function(req, resp) {
 
     var ts = Math.round(new Date().getTime() / 1000);
     var rnd = Math.round(Math.random() * 100000000);
-    var key = AgoraSignGenerator.generateDynamicKey('2e3d5f6e4da745a7b9d2f62e0bbb7583', '06b324b1ba024df78e5d519218d0a964', channelName, ts, rnd);
+    var key = AgoraSignGenerator.generateDynamicKey(process.env.APP_ID, process.env.APP_CERTIFICATE, channelName, ts, rnd);
 
     resp.header("Access-Control-Allow-Origin", "*")
     //resp.header("Access-Control-Allow-Origin", "http://ip:port")
@@ -40,7 +42,7 @@ var generateSignalingKey = function(req, resp) {
     return resp.status(400).json({'error': 'account name is required'}).send();
   }
 
-  var signalingToken = AgoraSignalingKeyGenerator.generateSignalingKey('2e3d5f6e4da745a7b9d2f62e0bbb7583', '06b324b1ba024df78e5d519218d0a964', accountName, 100000);
+  var signalingToken = AgoraSignalingKeyGenerator.generateSignalingKey(process.env.APP_ID, process.env.APP_CERTIFICATE, accountName, 100000);
   resp.header("Access-Control-Allow-Origin", "*")
 
   return resp.json({ 'signalingToken': signalingToken }).send();
