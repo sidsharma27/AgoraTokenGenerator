@@ -42,7 +42,9 @@ var generateSignalingKey = function(req, resp) {
     return resp.status(400).json({'error': 'account name is required'}).send();
   }
 
-  var signalingToken = AgoraSignalingKeyGenerator.generateSignalingKey(process.env.APP_ID, process.env.APP_CERTIFICATE, accountName, 100000);
+  var ts = Math.round(new Date().getTime() / 1000);
+
+  var signalingToken = AgoraSignalingKeyGenerator.generateSignalingKey(process.env.APP_ID, process.env.APP_CERTIFICATE, accountName, ts + 100000);
   resp.header("Access-Control-Allow-Origin", "*")
 
   return resp.json({ 'signalingToken': signalingToken }).send();
