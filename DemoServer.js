@@ -7,7 +7,7 @@ var favicon = require('serve-favicon');
 
 var AgoraSignalingKeyGenerator = require('./SignalingToken');
 const md5 = require("md5");
-var PORT = 80;
+var PORT = 8080;
 
 //var private_key = fs.readFileSync(__dirname + '/../../cert/xxx.com.key');
 //var certificate = fs.readFileSync(__dirname + '/../../cert/xxx.com.crt');
