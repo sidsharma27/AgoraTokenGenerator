@@ -27,7 +27,7 @@ var generateDynamicKey = function(req, resp) {
 
     var ts = Math.round(new Date().getTime() / 1000);
     var rnd = Math.round(Math.random() * 100000000);
-    var key = AgoraSignGenerator.generateDynamicKey(process.env.APP_ID, process.env.APP_CERTIFICATE, channelName, ts, rnd);
+    var key = AgoraSignGenerator.generateDynamicKey("Agora-App-ID", "Agora-App-Certificate", channelName, ts, rnd);
 
     resp.header("Access-Control-Allow-Origin", "*")
     //resp.header("Access-Control-Allow-Origin", "http://ip:port")
